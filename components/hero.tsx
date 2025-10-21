@@ -3,7 +3,7 @@ export function Hero() {
     <section
       className="relative py-20 px-4 overflow-hidden"
       style={{
-        backgroundImage: "url(/coffee-hero-background.jpg)",
+        backgroundImage: "url(/coffee-cup-hero-dark-background.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
