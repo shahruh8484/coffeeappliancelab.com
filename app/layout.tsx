@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description:
     "Personal coffee machine and coffee bean reviews. Discover the best equipment and beans for your perfect cup.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
