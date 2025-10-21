@@ -1,14 +1,73 @@
+"use client"
+
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Star, ArrowLeft } from "lucide-react"
+import { Star, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
+import { useState } from "react"
+
+function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+  }
+
+  return (
+    <div className="relative bg-white group">
+      <img src={images[currentIndex] || "/placeholder.svg"} alt={alt} className="w-full h-96 object-contain" />
+
+      {images.length > 1 && (
+        <>
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentIndex ? "bg-[#ff9500] w-8 h-2" : "bg-amber-200 hover:bg-amber-300 w-2 h-2"
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
 
 const reviewsData: Record<string, any> = {
   "keurig-k": {
     title: "Keurig K-Express Single Serve K-Cup Pod Coffee Maker",
     category: "Machine",
     rating: 4.5,
-    image: "https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71A3hJvFj7L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61rBGd54G-L._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Keurig-K-Express-Coffee-Single-Brewer/dp/B09715G57M",
     aboutThisItem: [
       { title: "STRONG BREW", description: "Enjoy a richer, more intense coffee flavor with the strong brew option." },
@@ -60,7 +119,11 @@ const reviewsData: Record<string, any> = {
     title: "BLACK+DECKER 12-Cup Digital Coffee Maker",
     category: "Machine",
     rating: 4.8,
-    image: "https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg",
+      "https://m.media-amazon.com/images/I/71PQZj8LwWL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61UN248J2zL._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/BLACK-DECKER-Programmable-Coffeemaker-CM1160B/dp/B01GJOMWVA",
     aboutThisItem: [
       {
@@ -71,7 +134,7 @@ const reviewsData: Record<string, any> = {
       {
         title: "SNEAK-A-CUP FEATURE",
         description:
-          "Pause brewing mid-cycle to pour your first cup without drips or spills—perfect when you can’t wait for the whole pot to finish.",
+          "Pause brewing mid-cycle to pour your first cup without drips or spills—perfect when you can't wait for the whole pot to finish.",
       },
       {
         title: "EASY-VIEW WATER WINDOW",
@@ -86,7 +149,7 @@ const reviewsData: Record<string, any> = {
       {
         title: "QUICKTOUCH PROGRAMMING & AUTO SHUTOFF",
         description:
-          "Set the 24-hour auto brew timer so your coffee is ready when you are—morning or anytime. Plus, the 2-hour automatic shutoff adds safety and peace of mind after each use.",
+          "Set the 24-hour auto brew timer so your coffee is ready exactly when you want it. Plus, the 2-hour automatic shutoff adds safety and peace of mind after each use.",
       },
     ],
     productInfo: {
@@ -113,7 +176,11 @@ const reviewsData: Record<string, any> = {
     title: "Lavazza Super Crema Whole Bean Coffee",
     category: "Coffee",
     rating: 4.3,
-    image: "https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71+n-Ma5o-L._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71TWRy-qNCL._SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Lavazza-Coffee-Medium-Espresso-2-2-Pound/dp/B000SDKDM4",
     aboutThisItem: [
       {
@@ -155,7 +222,7 @@ const reviewsData: Record<string, any> = {
       Origin: "Multiple Origins (15 countries)",
       "Bean Type": "Arabica and Robusta Blend",
     },
-    content: `Enjoy Lavazza’s most popular blend — Super Crema, a smooth, full-bodied medium roast
+    content: `Enjoy Lavazza's most popular blend — Super Crema, a smooth, full-bodied medium roast
 crafted for true coffee lovers. With fragrant notes of hazelnut and brown sugar, this
 blend delivers a rich, bold flavor and a velvety, creamy texture in every cup.
 Made from a carefully balanced combination of Arabica and Robusta beans sourced
@@ -167,7 +234,11 @@ from the first sip to the last.`,
     title: "Hamilton Beach FlexBrew Trio 2-Way Coffee Maker",
     category: "Machine",
     rating: 4.9,
-    image: "https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/71eaWBtLvkL._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/71ZRWGKRFbL._SX522_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Hamilton-Beach-49902-FlexBrew-Compatible/dp/B095HZYNFM",
     aboutThisItem: [
       {
@@ -236,7 +307,11 @@ lover to enjoy their perfect brew, whether it's a quick morning cup or a full po
     title: "Hot & Iced Coffee Maker with Bold Setting",
     category: "Machine",
     rating: 4.7,
-    image: "https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71bUya9rrTL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61-cPVDjTnL._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/KIDISLE-Setting-Grounds-Removable-Reusable/dp/B0D7YXVHLJ",
     aboutThisItem: [
       {
@@ -279,13 +354,16 @@ provides an eco-friendly option for your favorite grounds.
 Compact yet powerful, this one-cup coffee machine fits seamlessly into any 
 kitchen or office space. Whether you prefer a steaming mug in the morning or a 
 refreshing iced coffee in the afternoon, it delivers great flavor fast—every time.`,
-    
   },
   "casabrews-cm5418-espresso": {
     title: "CASABREWS CM5418 Espresso Machine 20 Bar",
     category: "Machine",
     rating: 4.4,
-    image: "https://m.media-amazon.com/images/I/71KZfudGi1L._AC_SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/71KZfudGi1L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61wHwN6fEQL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71+XKIzr7GL._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Espresso-Professional-Removable-Cappuccino-Macchiato/dp/B09X3WGJ3R",
     aboutThisItem: [
       { title: "CLASSIC ITALIAN DESIGN", description: "Iconic octagonal shape unchanged since 1933." },
@@ -300,7 +378,8 @@ refreshing iced coffee in the afternoon, it delivers great flavor fast—every t
       Brand: "CASABREWS",
       Color: "A-Silver",
       "Product Dimensions": '12.28"D x 5.47"W x 11.97"H',
-      "Special Feature": "Cappuccino Machine, Cappuccino Maker, Espresso Machine With Milk Frother Steam Wand, Expresso Maker for Home or Office, Latte Machine, Latte Maker, Brushed Stainless Steel Coffee Machine, You can watch more INSTRUCTIONAL VIDEO by clicking Visit the CASABREWS Store, Espresso Maker, Espresso Machine with Milk Frother",
+      "Special Feature":
+        "Cappuccino Machine, Cappuccino Maker, Espresso Machine With Milk Frother Steam Wand, Expresso Maker for Home or Office, Latte Machine, Latte Maker, Brushed Stainless Steel Coffee Machine, You can watch more INSTRUCTIONAL VIDEO by clicking Visit the CASABREWS Store, Espresso Maker, Espresso Machine with Milk Frother",
       "Coffee Maker Type": "Espresso Machine",
       Style: "Button",
       Manufacturer: "CASABREWS",
@@ -329,36 +408,56 @@ single and double shot filters, portafilter, tamper with spoon, and user manual.
 Note: After frothing milk, allow the machine to cool down before brewing again to prevent 
 overheating. If the 1-cup or 2-cup lights flash, follow the cooling steps in the included guide. 
 For more details, visit the CASABREWS Store for instructional videos.`,
-    
   },
   "bloom-nutrition-milk-frother": {
     title: "Bloom Nutrition Milk Frother",
     category: "Machine",
     rating: 4.6,
-    image: "https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/615aMdgvs9L._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/6162NaV67rL._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Bloom-Nutrition-Powered-Stainless-Handheld/dp/B09XBTPXD1",
     aboutThisItem: [
-      { title: "HIGH QUALITY FROTHER WAND", description: "Our High Powered Hand Frother instantly blends your favorite Bloom supplements to perfection (no clumps here!). Use for your Bloom greens, collagens, proteins, and more to help fuel your body with the nutrients it needs!." },
-      { title: "VERSATILE ELECTRIC MIXER", description: "Bloom Nutrition's Greens Mixer can blend through many different liquids ensuring a creamy, foamy consistency, every time. Use it as a greens blender, coffee frother, matcha whisk, or to even whip up eggs, or blend salad dressings for delicious, healthy recipes." },
-      { title: "EASY TO USE", description: "This electric whisk instantly blends your juice or smoothie with one simple on and off switch. It also includes a sturdy, smooth plastic handle for comfortability and a sleek whisk stand for easy storage and accessibility." },
-      { title: "CONVENIENT AND EFFORTLESS", description: "This handheld mixer is powered by 2 AA batteries, allowing for easy portability with no charging cords or outlets getting in the way of your morning routine. Plus, it's designed with rust-proof stainless steel that lasts and offers no hassle cleaning! Simply run under hot water, turn on, and it’s instantly clean." },
-      { title: "FEMALE-FOUNDED", description: "Like many other women, co-founder Mari Llewellyn struggled to find dietary supplements that were made with quality ingredients and tasted delicious. That’s why she created Bloom — approachable and delicious health supplements designed to support your wellness journey and give your body what it needs to bloom." },
-      
+      {
+        title: "HIGH QUALITY FROTHER WAND",
+        description:
+          "Our High Powered Hand Frother instantly blends your favorite Bloom supplements to perfection (no clumps here!). Use for your Bloom greens, collagens, proteins, and more to help fuel your body with the nutrients it needs!.",
+      },
+      {
+        title: "VERSATILE ELECTRIC MIXER",
+        description:
+          "Bloom Nutrition's Greens Mixer can blend through many different liquids ensuring a creamy, foamy consistency, every time. Use it as a greens blender, coffee frother, matcha whisk, or to even whip up eggs, or blend salad dressings for delicious, healthy recipes.",
+      },
+      {
+        title: "EASY TO USE",
+        description:
+          "This electric whisk instantly blends your juice or smoothie with one simple on and off switch. It also includes a sturdy, smooth plastic handle for comfortability and a sleek whisk stand for easy storage and accessibility.",
+      },
+      {
+        title: "CONVENIENT AND EFFORTLESS",
+        description:
+          "This handheld mixer is powered by 2 AA batteries, allowing for easy portability with no charging cords or outlets getting in the way of your morning routine. Plus, it's designed with rust-proof stainless steel that lasts and offers no hassle cleaning! Simply run under hot water, turn on, and it’s instantly clean.",
+      },
+      {
+        title: "FEMALE-FOUNDED",
+        description:
+          "Like many other women, co-founder Mari Llewellyn struggled to find dietary supplements that were made with quality ingredients and tasted delicious. That’s why she created Bloom — approachable and delicious health supplements designed to support your wellness journey and give your body what it needs to bloom.",
+      },
     ],
     productInfo: {
       Brand: "Bloom Nutrition",
       Color: "Mixer",
       "Product Dimensions": '3"W x 10"H',
       "Special Feature": "Battery Powered",
-      
+
       Style: "Electric",
-      
+
       "Included Components": "Mixers",
-      
+
       Material: "Stainless Steel",
-      
-      
-      
+
       Manufacturer: "Bloom Nutrition",
       "Item Weight": "5.3 ounces",
     },
@@ -380,24 +479,44 @@ Elegant Look: Modern green finish with Bloom branding—perfect for any kitchen.
 
 Why You’ll Love It:
 Whether you’re blending matcha, whipping protein drinks, or enhancing your morning latte, this frother combines performance and style. With over 3,000 positive ratings and Amazon’s Choice badge, it’s a proven favorite among home baristas.`,
-    
   },
   "keurig-k-duo-hot-iced-single-serve": {
     title: "Keurig K-Duo Hot & Iced Single Serve & Carafe Coffee Maker",
     category: "Machine",
     rating: 4.2,
-    image: "https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/714P2D+-gkL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71DZ8xXrxrL._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Keurig-Single-MultiStream-Technology-Reservoir/dp/B0D8LXRHQ8",
     aboutThisItem: [
-      { title: "BREW OVER ICE", description: "Adjusts temperature for maximum flavor and less ice melt for single-cup iced coffees and teas." },
-      { title: "STRONG BREW & EXTRA HOT FUNCTIONALITY", description: "Brews a stronger, more intense-flavored cup and the extra hot feature brews a hotter single cup." },
-      { title: "MULTIPLE BREW SIZES", description: "Brew 6, 8, 10, or 12oz single cups or 6, 8, 10, or 12-cup carafes. 12-cup glass carafe specially designed to limit dripping." },
+      {
+        title: "BREW OVER ICE",
+        description: "Adjusts temperature for maximum flavor and less ice melt for single-cup iced coffees and teas.",
+      },
+      {
+        title: "STRONG BREW & EXTRA HOT FUNCTIONALITY",
+        description: "Brews a stronger, more intense-flavored cup and the extra hot feature brews a hotter single cup.",
+      },
+      {
+        title: "MULTIPLE BREW SIZES",
+        description:
+          "Brew 6, 8, 10, or 12oz single cups or 6, 8, 10, or 12-cup carafes. 12-cup glass carafe specially designed to limit dripping.",
+      },
       {
         title: "ONE 72OZ RESERVOIR",
-        description: "The extra-large, removable reservoir is shared by both sides for fast, convenient brewing with fewer refills.",
+        description:
+          "The extra-large, removable reservoir is shared by both sides for fast, convenient brewing with fewer refills.",
       },
-      { title: "FRONT-FACING CONTROL PANEL", description: "Intuitive interface for selecting all your brewing preferences." },
-      { title: "PROGRAMMABLE CARAFE AUTO BREW", description: "Set a time for your coffee maker to automatically brew a carafe up to 24 hours in advance." },
+      {
+        title: "FRONT-FACING CONTROL PANEL",
+        description: "Intuitive interface for selecting all your brewing preferences.",
+      },
+      {
+        title: "PROGRAMMABLE CARAFE AUTO BREW",
+        description: "Set a time for your coffee maker to automatically brew a carafe up to 24 hours in advance.",
+      },
       { title: "COMPACT DESIGN", description: "The versatility of two kinds of brewers in one space-saving unit." },
     ],
     productInfo: {
@@ -411,7 +530,7 @@ Whether you’re blending matcha, whipping protein drinks, or enhancing your mor
       "Included Components": "Carafe",
       "Operation Mode": "Fully Automatic",
       Voltage: "110",
-      "Model Name": "Keurig K-Duo Gen 2",             
+      "Model Name": "Keurig K-Duo Gen 2",
       Manufacturer: "Keurig",
       "Item Weight": "1 pounds",
     },
@@ -426,22 +545,53 @@ On the single-serve side, you can choose from 6, 8, 10, or 12oz cup sizes. The K
 The carafe side offers brewing capacities of 6, 8, 10, or 12 cups, and its Auto Brew function lets you schedule your coffee up to 24 hours in advance. The redesigned glass carafe prevents drips and sits on a heated plate to keep your coffee hot and flavorful for hours.
 
 Whether it’s a quiet morning for one or a lively gathering with friends, the Keurig K-Duo delivers premium coffee experiences — consistently, conveniently, and your way.`,
-    
   },
   "ninja-luxe-cafe-3-in-1-espresso": {
     title: "Ninja Luxe Café 3-in-1 Espresso, Drip Coffee and Cold Brew Machine",
     category: "Machine",
     rating: 4.5,
-    image: "https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg",
+    images: [
+      "https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/81Ixy09NgzL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/811Q-ojaVZL._AC_SX679_.jpg",
+    ],
     amazonUrl: "https://www.amazon.com/Ninja-Integrated-Hands-Free-Cappuccinos-ES601/dp/B0D45PK5V4",
     aboutThisItem: [
-      { title: "3 MACHINES IN 1", description: "Brew without limits with no guesswork espresso, well-balanced drip coffee, and rapid cold brew. 2 Espresso Styles — double shot or quad shot, 3 Drip Coffee Styles—classic, rich or over ice, and 2 Cold Brew styles— cold pressed espresso or cold brew coffee (drip coffee and cold brew available in 6, 8, 10, 12, 14, 16, 18 oz. sizes)." },
-      { title: "BARISTA ASSIST TECHNOLOGY", description: "Unlock the ultimate guided experience with customized grind size recommendations, weight-based dosing, and active brew adjustments for temperature & pressure for balanced flavor, deliver café-quality brews, no guesswork required." },
-      { title: "INTEGRATED GRINDER", description: "The conical burr grinder has 25 grind settings to deliver a fresh, precise grind for versatile drink options for every type of bean." },
-      { title: "WEIGHT-BASED DOSING", description: "Different drinks require different amounts of grounds. Our built-in scale does the work for you with weight-based dosing tailored for your chosen drink. Other machines simply grind for a set amount of time, and you need to manually weigh your grounds." },
-      { title: "HANDS-FREE FROTHING", description: "Whether using dairy or plant-based milk, creating hot or cold microfoam, the Dual Froth System combines steaming and whisking at the same time to effortlessly create perfectly textured microfoam. Removing the trial-and-error from manual frothing with 4 preset programs including steamed milk, thin froth, thick froth and cold foam." },
-      { title: "FLAVORFUL COLD-PRESSED DRINKS", description: "Espresso brewed at lower temperature and pressure, at a slower pace to extract a more flavorful, smooth brew. Perfect for creating a crowd-pleasing espresso martini." },
-      { title: "PERFECT PUCKS", description: "Assisted tamper delivers the perfect puck with evenly distributed and compact grounds, ensuring ideal conditions for even water distribution that results in a bold, high-quality shot." },
+      {
+        title: "3 MACHINES IN 1",
+        description:
+          "Brew without limits with no guesswork espresso, well-balanced drip coffee, and rapid cold brew. 2 Espresso Styles — double shot or quad shot, 3 Drip Coffee Styles—classic, rich or over ice, and 2 Cold Brew styles— cold pressed espresso or cold brew coffee (drip coffee and cold brew available in 6, 8, 10, 12, 14, 16, 18 oz. sizes).",
+      },
+      {
+        title: "BARISTA ASSIST TECHNOLOGY",
+        description:
+          "Unlock the ultimate guided experience with customized grind size recommendations, weight-based dosing, and active brew adjustments for temperature & pressure for balanced flavor, deliver café-quality brews, no guesswork required.",
+      },
+      {
+        title: "INTEGRATED GRINDER",
+        description:
+          "The conical burr grinder has 25 grind settings to deliver a fresh, precise grind for versatile drink options for every type of bean.",
+      },
+      {
+        title: "WEIGHT-BASED DOSING",
+        description:
+          "Different drinks require different amounts of grounds. Our built-in scale does the work for you with weight-based dosing tailored for your chosen drink. Other machines simply grind for a set amount of time, and you need to manually weigh your grounds.",
+      },
+      {
+        title: "HANDS-FREE FROTHING",
+        description:
+          "Whether using dairy or plant-based milk, creating hot or cold microfoam, the Dual Froth System combines steaming and whisking at the same time to effortlessly create perfectly textured microfoam. Removing the trial-and-error from manual frothing with 4 preset programs including steamed milk, thin froth, thick froth and cold foam.",
+      },
+      {
+        title: "FLAVORFUL COLD-PRESSED DRINKS",
+        description:
+          "Espresso brewed at lower temperature and pressure, at a slower pace to extract a more flavorful, smooth brew. Perfect for creating a crowd-pleasing espresso martini.",
+      },
+      {
+        title: "PERFECT PUCKS",
+        description:
+          "Assisted tamper delivers the perfect puck with evenly distributed and compact grounds, ensuring ideal conditions for even water distribution that results in a bold, high-quality shot.",
+      },
     ],
     productInfo: {
       Brand: "Ninja",
@@ -451,9 +601,10 @@ Whether it’s a quiet morning for one or a lively gathering with friends, the K
       "Coffee Maker Type": "Espresso Machine",
       Style: "Luxe Cafe",
       "Specific Uses For Product": "Cappuccino, Espresso, Iced Coffee, Latte, Mocha",
-      "Included Components": "Assisted Tamper, Cleaning Brush, Cleaning Disc, Funnel, Descaling Powder, Cleaning tablets, Hard Water Testing Kit, Double Basket, Esspresso Machine, Portafilter, Luxe Basket, Milk Jug",
-      "Operation Mode": "Fully Automatic",      
-      "Model Name": "Ninja ES601",      
+      "Included Components":
+        "Assisted Tamper, Cleaning Brush, Cleaning Disc, Funnel, Descaling Powder, Cleaning tablets, Hard Water Testing Kit, Double Basket, Esspresso Machine, Portafilter, Luxe Basket, Milk Jug",
+      "Operation Mode": "Fully Automatic",
+      "Model Name": "Ninja ES601",
       Manufacturer: "Ninja",
       "Item Weight": "31.9 pounds",
     },
@@ -464,7 +615,6 @@ Experience espresso made simple with the Ninja Luxe Café Premier Series — a s
 Powered by Barista Assist Technology, the machine automatically guides you through every step — from grind size suggestions to precise brewing adjustments — ensuring consistent, delicious results every time. The built-in Dual Froth System creates silky, hands-free microfoam for lattes, cappuccinos, and specialty drinks in seconds.
 
 Redefine your coffee routine with the intuitive design, professional performance, and effortless control of the Ninja Luxe Café Premier Series.`,
-    
   },
 }
 
@@ -496,7 +646,7 @@ export default function ReviewDetailPage({ params }: { params: { slug: string } 
         </Link>
 
         <article className="bg-card border border-border rounded-lg overflow-hidden">
-          <img src={review.image || "/placeholder.svg"} alt={review.title} className="w-full h-96 object-contain" />
+          <ImageSlider images={review.images || [review.image]} alt={review.title} />
 
           <div className="p-8">
             <div className="flex items-center justify-between mb-4">
