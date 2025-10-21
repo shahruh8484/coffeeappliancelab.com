@@ -670,7 +670,7 @@ export default function ReviewDetailPage({ params }: { params: { slug: string } 
             </div>
 
             <a
-              href={review.amazonUrl+'?tag= coffeeappli04-20'}
+              href={review.amazonUrl+'?tag=coffeeappli04-20'}
               data-auto
               className="inline-block bg-[#ff9500] hover:bg-[#e68600] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300 mb-8"
             >
