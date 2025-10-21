@@ -22,7 +22,6 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Coffee className="w-8 h-8 text-orange-500" />
           <span className="text-2xl font-bold text-white">CoffeeApplianceLab</span>
-          {/* </CHANGE> */}
         </Link>
 
         <button
@@ -57,3 +56,5 @@ export function Header() {
     </header>
   )
 }
+
+export default Header
