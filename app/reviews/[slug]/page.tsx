@@ -184,9 +184,7 @@ from the first sip to the last.`,
     title: "Hamilton Beach FlexBrew Trio 2-Way Coffee Maker",
     category: "Machine",
     rating: 4.9,
-    images: [
-      "https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg"],
     amazonUrl: "https://amzn.to/49wEvBf",
     aboutThisItem: [
       {
@@ -253,9 +251,7 @@ lover to enjoy their perfect brew, whether it's a quick morning cup or a full po
     title: "Hot & Iced Coffee Maker with Bold Setting",
     category: "Machine",
     rating: 4.7,
-    images: [
-      "https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg"],
     amazonUrl: "https://amzn.to/3JGa1SO",
     aboutThisItem: [
       {
@@ -306,9 +302,7 @@ refreshing iced coffee in the afternoon, it delivers great flavor fast—every t
     title: "CASABREWS CM5418 Espresso Machine 20 Bar",
     category: "Machine",
     rating: 4.4,
-    images: [
-      "https://m.media-amazon.com/images/I/617U+hSCJEL._AC_SL1500_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/617U+hSCJEL._AC_SL1500_.jpg"],
     amazonUrl: "https://amzn.to/4qEldjC",
     aboutThisItem: [
       {
@@ -651,7 +645,7 @@ export default function ReviewDetailPage({ params }: { params: { slug: string } 
               rel="noopener noreferrer nofollow sponsored"
               className="inline-block bg-[#ff9500] hover:bg-[#e68600] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300 mb-8"
             >
-              Check Price on Retailer
+              Check Price
             </a>
 
             {review.aboutThisItem && review.aboutThisItem.length > 0 && (
