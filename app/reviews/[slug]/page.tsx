@@ -2,225 +2,175 @@
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Star, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
+import { Star, ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
-
-function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
-  }
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
-  }
-
-  return (
-    <div className="relative bg-white group">
-      <img src={images[currentIndex] || "/placeholder.svg"} alt={alt} className="w-full h-96 object-contain" />
-
-      {images.length > 1 && (
-        <>
-          {/* Navigation Arrows */}
-          <button
-            onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            aria-label="Next image"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Dot Indicators */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentIndex ? "bg-[#ff9500] w-8 h-2" : "bg-amber-200 hover:bg-amber-300 w-2 h-2"
-                }`}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  )
-}
 
 const reviewsData: Record<string, any> = {
   "keurig-k": {
     title: "Keurig K-Express Single Serve K-Cup Pod Coffee Maker",
     category: "Machine",
     rating: 4.5,
-    images: [
-      "https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71A3hJvFj7L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61rBGd54G-L._AC_SX679_.jpg",
-    ],
-    amazonUrl: "https://amzn.to/47ywusW",
+    images: ["https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SL1500_.jpg"],
+    amazonUrl: "https://amzn.to/4nxD8We",
     aboutThisItem: [
-      { title: "STRONG BREW", description: "Enjoy a richer, more intense coffee flavor with the strong brew option." },
-      { title: "MULTIPLE CUP SIZES", description: "Choose between 8, 10, or 12 oz cups with a single button press." },
       {
-        title: "LARGE WATER RESERVOIR",
+        title: "BOLD FLAVOR OPTION",
         description:
-          "The 42 oz removable tank allows you to brew up to four cups before needing a refill (based on 8 oz servings).",
-      },
-      { title: "FAST & FRESH BREWING", description: "Get a hot, flavorful cup of coffee in just minutes." },
-      {
-        title: "TRAVEL MUG READY",
-        description: 'The removable drip tray fits travel mugs up to 7.4" tall for on-the-go convenience.',
+          "Intensify your coffee experience with a concentrated brewing mode that delivers deeper, more robust taste profiles.",
       },
       {
-        title: "ENERGY SAVING",
+        title: "FLEXIBLE SERVING SIZES",
         description:
-          "The auto-off function powers down the brewer 5 minutes after the last use to help conserve energy.",
+          "Customize your beverage volume by selecting from three convenient options: 8, 10, or 12 ounce portions at the touch of a button.",
       },
       {
-        title: "BREW YOUR OWN COFFEE",
+        title: "GENEROUS WATER CAPACITY",
         description:
-          "Compatible with the My K-Cup Universal Reusable Coffee Filter for brewing your favorite ground coffee.",
+          "Features a detachable 42-ounce reservoir that accommodates approximately four 8-ounce servings between refills, minimizing interruptions to your coffee routine.",
+      },
+      {
+        title: "RAPID PREPARATION",
+        description: "Produces steaming, aromatic coffee beverages in a matter of minutes for busy mornings.",
+      },
+      {
+        title: "ACCOMMODATES TRAVEL CONTAINERS",
+        description:
+          "Adjustable drip platform accepts tall travel mugs measuring up to 7.4 inches, perfect for coffee on the move.",
+      },
+      {
+        title: "POWER CONSERVATION MODE",
+        description:
+          "Automatically powers down five minutes following the final brew cycle, helping reduce energy consumption when not in use.",
+      },
+      {
+        title: "COMPATIBLE WITH GROUND COFFEE",
+        description:
+          "Works seamlessly with the My K-Cup Universal Reusable Filter accessory, allowing you to brew using your preferred ground coffee varieties.",
       },
     ],
     productInfo: {
-      Brand: "Keurig",
-      Color: "Black",
-      "Product Dimensions": '12.8"D x 5.1"W x 12.1"H',
-      "Special Feature": "Removable Tank",
-      "Coffee Maker Type": "Single Serve",
-      Style: "Modern",
-      "Specific Uses For Product": "Espresso",
-      "Included Components": "Coffee Maker",
-      "Operation Mode": "Manual",
-      Voltage: "120",
-      "Model Name": "K-Express",
-      "Number of Items": "1",
-      "Human Interface Input": "Buttons",
-      "Unit Count": "1.0 Count",
-      "Global Trade Identification Number": "10611247389116",
-      "Coffee Input Type": "K-Cup Pods, Ground Coffee",
       Manufacturer: "Keurig",
-      "Item Weight": "4.1 pounds",
+      Finish: "Black",
+      Dimensions: '12.8" Deep x 5.1" Wide x 12.1" High',
+      "Key Feature": "Detachable Water Tank",
+      "Brewing System": "Single Cup",
+      Design: "Contemporary",
+      "Primary Use": "Espresso Beverages",
+      "Package Contents": "Coffee Brewing Unit",
+      "Control Type": "Manual Operation",
+      "Power Rating": "120 Volts",
+      "Product Series": "K-Express",
+      Quantity: "1 Unit",
+      "Interface Type": "Push Button",
+      Count: "1.0 Unit",
+      GTIN: "10611247389116",
+      "Compatible Coffee Types": "K-Cup Pods, Ground Coffee",
+      Brand: "Keurig",
+      "Net Weight": "4.1 pounds",
     },
-    content: `Experience the trusted Keurig quality at an unbeatable value with the Keurig K-Express Single Serve Coffee Maker. Brew rich, full-bodied coffee with every cup, and press the STRONG button whenever you crave a bolder, more intense flavor. Designed with sleek, modern lines, this compact brewer looks great in any kitchen. Choose from 8, 10, or 12 oz cup sizes and enjoy fresh coffee, tea, or cocoa in just minutes—all at the touch of a button. The 42 oz removable water reservoir allows you to brew up to four cups before refilling, while the back-to-back brewing feature means no waiting for reheating between cups. Compatible with hundreds of K-Cup pod varieties from leading brands—or use your own favorite grounds with the My K-Cup Reusable Filter (sold separately)—the K-Express brings the convenience and flavor of America's #1 single-serve coffee maker brand to your countertop at an affordable price.`,
+    content: `Experience the trusted quality at an unbeatable value with the K-Express Single Serve Coffee Maker. Brew rich, full-bodied coffee with every cup, and press the STRONG button whenever you crave a bolder, more intense flavor. Designed with sleek, modern lines, this compact brewer looks great in any kitchen. Choose from 8, 10, or 12 oz cup sizes and enjoy fresh coffee, tea, or cocoa in just minutes—all at the touch of a button. The 42 oz removable water reservoir allows you to brew up to four cups before refilling, while the back-to-back brewing feature means no waiting for reheating between cups. Compatible with hundreds of K-Cup pod varieties from leading brands—or use your own favorite grounds with the My K-Cup Reusable Filter (sold separately)—the K-Express brings the convenience and flavor of America's #1 single-serve coffee maker brand to your countertop at an affordable price.`,
   },
   "black-decker": {
     title: "BLACK+DECKER 12-Cup Digital Coffee Maker",
     category: "Machine",
     rating: 4.8,
-    images: [
-      "https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg",
-      "https://m.media-amazon.com/images/I/71PQZj8LwWL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61UN248J2zL._AC_SX679_.jpg",
-    ],
-    amazonUrl: "https://amzn.to/47UP8M3",
+    images: ["https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg"],
+    amazonUrl: "https://amzn.to/3X4Tqer",
     aboutThisItem: [
       {
-        title: "12-CUP DURALIFE GLASS CARAFE",
+        title: "DURABLE 12-CUP GLASS CARAFE",
         description:
-          "Durable and spacious, this 12-cup* glass carafe includes clear measurement markings for precise filling and an ergonomic handle for easy, comfortable pouring. *One cup equals approximately 5 ounces (may vary by brewing method).",
+          "Robust glass pitcher with clear volume indicators and comfortable grip handle for effortless serving. Each cup measures roughly 5 ounces depending on brewing technique.",
       },
       {
-        title: "SNEAK-A-CUP FEATURE",
+        title: "MID-BREW PAUSE FUNCTION",
         description:
-          "Pause brewing mid-cycle to pour your first cup without drips or spills—perfect when you can't wait for the whole pot to finish.",
+          "Temporarily halt the brewing process to pour an early cup without creating spills or messes—ideal when you need that first sip immediately.",
       },
       {
-        title: "EASY-VIEW WATER WINDOW",
+        title: "TRANSPARENT WATER GAUGE",
         description:
-          "The conveniently placed front water window lets you see exactly how much water is in the tank for accurate brewing every time.",
+          "Front-mounted viewing window displays current water level clearly, ensuring precise measurements for consistent brewing results every time.",
       },
       {
-        title: "USER-FRIENDLY DIGITAL CONTROLS",
+        title: "INTUITIVE DIGITAL INTERFACE",
         description:
-          "Oversized, rubberized buttons make operation simple, while the clear digital display shows the clock, brewing status, and programmable settings.",
+          "Large, soft-touch control buttons simplify operation, while the backlit screen displays time, brew status, and programmable timer settings.",
       },
       {
-        title: "QUICKTOUCH PROGRAMMING & AUTO SHUTOFF",
+        title: "PROGRAMMABLE TIMER & SAFETY SHUTOFF",
         description:
-          "Set the 24-hour auto brew timer so your coffee is ready exactly when you want it. Plus, the 2-hour automatic shutoff adds safety and peace of mind after each use.",
+          "Schedule your morning brew up to 24 hours ahead using the auto-start feature. Built-in 2-hour automatic shutoff provides added safety and energy efficiency.",
       },
     ],
     productInfo: {
-      Brand: "BLACK+DECKER",
-      Color: "Black",
-      "Product Dimensions": '11.8"D x 8.9"W x 13.5"H',
-      "Special Feature": "Programmable, Auto Shutoff",
-      "Coffee Maker Type": "Drip Coffee Machine",
-      Style: "Modern",
-      "Specific Uses For Product": "Coffee",
-      "Included Components": "Coffee Maker, Glass Carafe",
-      "Operation Mode": "Automatic",
-      Voltage: "120",
-      "Model Name": "CM1160B",
-      "Number of Items": "1",
-      "Human Interface Input": "Buttons",
-      Capacity: "12 Cups",
       Manufacturer: "BLACK+DECKER",
-      "Item Weight": "3.5 pounds",
+      Finish: "Black",
+      Dimensions: '11.8" Deep x 8.9" Wide x 13.5" High',
+      "Key Features": "Timer Function, Auto Shutoff",
+      "Brewing System": "Drip Style Coffee Maker",
+      Design: "Contemporary",
+      "Primary Use": "Coffee Preparation",
+      "Package Contents": "Coffee Maker Unit, Glass Pitcher",
+      "Control Type": "Automatic Operation",
+      "Power Rating": "120 Volts",
+      "Product Series": "CM1160B",
+      Quantity: "1 Unit",
+      "Interface Type": "Push Button",
+      "Brew Capacity": "12 Cups",
+      Brand: "BLACK+DECKER",
+      "Net Weight": "3.5 pounds",
     },
-    content: `Begin your mornings with the perfect cup using the BLACK+DECKER 12-Cup Digital Coffee Maker. Built for both convenience and reliability, this programmable brewer includes a durable 12-cup Duralife™ glass carafe with easy-to-read markings and a comfortable ergonomic handle for effortless pouring. With QuickTouch™ programming, you can schedule the 24-hour auto brew feature so your coffee is ready exactly when you want it. The Sneak-A-Cup™ function allows you to pour a cup mid-brew without creating drips or messes, while the easy-view water window helps ensure accurate filling every time. The digital control panel with soft-touch rubberized buttons offers simple operation, and the 2-hour auto shutoff provides extra safety and energy efficiency. The removable, reusable filter basket minimizes the need for paper filters, making cleanup quick and easy. Finished in sleek black, this coffee maker combines modern design with dependable performance—an ideal choice for any home kitchen.`,
+    content: `Begin your mornings with the perfect cup using this 12-Cup Digital Coffee Maker. Built for both convenience and reliability, this programmable brewer includes a durable 12-cup Duralife™ glass carafe with easy-to-read markings and a comfortable ergonomic handle for effortless pouring. With QuickTouch™ programming, you can schedule the 24-hour auto brew feature so your coffee is ready exactly when you want it. The Sneak-A-Cup™ function allows you to pour a cup mid-brew without creating drips or messes, while the easy-view water window helps ensure accurate filling every time. The digital control panel with soft-touch rubberized buttons offers simple operation, and the 2-hour auto shutoff provides extra safety and energy efficiency. The removable, reusable filter basket minimizes the need for paper filters, making cleanup quick and easy. Finished in sleek black, this coffee maker combines modern design with dependable performance—an ideal choice for any home kitchen.`,
   },
   "lavazza-super-crema": {
     title: "Lavazza Super Crema Whole Bean Coffee",
     category: "Coffee",
     rating: 4.3,
-    images: [
-      "https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71+n-Ma5o-L._SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71TWRy-qNCL._SX679_.jpg",
-    ],
-    amazonUrl: "https://amzn.to/4qzRpo5",
+    images: ["https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg"],
+    amazonUrl: "https://amzn.to/4qIjRoa",
     aboutThisItem: [
       {
-        title: "SUPER CREMA",
-        description: "A 2.2 lb whole bean coffee bag ideal for espresso preparation.",
-      },
-      {
-        title: "INTENSITY AND ROAST",
-        description: "This full-bodied medium roast offers a bold and creamy finish.",
-      },
-      {
-        title: "BLEND",
+        title: "PREMIUM WHOLE BEAN BLEND",
         description:
-          "Made from Arabica and Robusta beans, this naturally caffeinated blend is sourced from 15 coffee-growing countries around the world PREPARATION: Ideal for espresso preparation.",
+          "Packaged in a 2.2-pound bag, these whole beans are specifically crafted for espresso brewing applications.",
       },
       {
-        title: "BREWING GUIDE FOR SINGLE ESPRESSO",
-        description: "0.28 oz of ground espresso delivers a 1 oz espresso shot.",
-      },
-      {
-        title: "INGREDIENTS",
+        title: "FLAVOR PROFILE & ROAST LEVEL",
         description:
-          "Lavazza Super Crema contains only coffee and is produced in facilities that exclusively make coffee.",
+          "This medium-roasted blend delivers full-bodied richness with a smooth, creamy finish that lingers pleasantly.",
+      },
+      {
+        title: "BEAN COMPOSITION",
+        description:
+          "Combines premium Arabica and Robusta varieties sourced from 15 distinct coffee-producing regions worldwide. Naturally caffeinated for authentic espresso preparation.",
+      },
+      {
+        title: "ESPRESSO PREPARATION GUIDE",
+        description:
+          "Use approximately 0.28 ounces of freshly ground coffee to produce a standard 1-ounce espresso shot.",
+      },
+      {
+        title: "PURE COFFEE PRODUCT",
+        description:
+          "Contains exclusively coffee beans with no additives. Manufactured in dedicated coffee-only production facilities to ensure purity.",
       },
     ],
     productInfo: {
-      Brand: "Lavazza",
-      "Item Form": "Whole Bean",
-      "Caffeine Content": "Caffeinated",
-      "Roast Level": "Medium",
-      "Item Weight": "2.2 Pounds",
-      "Package Information": "Bag",
-      Flavor: "Hazelnut, Brown Sugar",
-      "Number of Items": "1",
-      Specialty: "Suitable for Espresso",
-      "Diet Type": "Kosher",
-      "Unit Count": "2.2 Pound",
       Manufacturer: "Lavazza",
-      Origin: "Multiple Origins (15 countries)",
-      "Bean Type": "Arabica and Robusta Blend",
+      "Product Type": "Whole Bean",
+      "Caffeine Level": "Caffeinated",
+      "Roast Type": "Medium",
+      "Package Weight": "2.2 Pounds",
+      "Container Type": "Bag",
+      "Taste Notes": "Hazelnut, Brown Sugar",
+      Quantity: "1 Package",
+      "Best For": "Espresso Brewing",
+      "Dietary Info": "Kosher Certified",
+      "Unit Measurement": "2.2 Pound",
+      Brand: "Lavazza",
+      "Bean Origin": "Multi-Origin (15 countries)",
+      "Bean Varieties": "Arabica and Robusta Blend",
     },
     content: `Enjoy Lavazza's most popular blend — Super Crema, a smooth, full-bodied medium roast
 crafted for true coffee lovers. With fragrant notes of hazelnut and brown sugar, this
@@ -236,63 +186,59 @@ from the first sip to the last.`,
     rating: 4.9,
     images: [
       "https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/71eaWBtLvkL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/71ZRWGKRFbL._SX522_.jpg",
     ],
-    amazonUrl: "https://amzn.to/4nrw8Kv",
+    amazonUrl: "https://amzn.to/49wEvBf",
     aboutThisItem: [
       {
-        title: "3 WAYS TO BREW",
+        title: "TRIPLE BREWING VERSATILITY",
         description:
-          "With this 12 cup Hamilton Beach coffee maker, brew a single cup with a pod or coffee grounds or brew up to 12 cups using your favorite ground coffee.",
+          "This 12-cup system offers three distinct brewing methods: single-serve with pods, single-serve with grounds, or full carafe brewing with your favorite ground coffee.",
       },
       {
-        title: "FAST BREWING — BREW A SINGLE CUP IN ABOUT 90 SECONDS",
+        title: "ULTRA-FAST SINGLE CUP BREWING",
         description:
-          "In the morning, every second counts. Unlike 2 way coffee makers of the past, the FlexBrew Trio Coffee Machine prepares a single cup in 90 seconds so you have more time to enjoy your brew.",
+          "Prepare individual servings in approximately 90 seconds—significantly faster than traditional two-way brewers, giving you more time to savor your coffee.",
       },
       {
-        title: "BREW 7 SINGLE SERVINGS WITHOUT REFILLING THE 56 OZ. WATER RESERVOIR",
+        title: "EXTENDED BREWING CAPACITY",
         description:
-          "With this single serve coffee maker, you'll save time with fast 90-second brewing and a large 56 oz. water reservoir that can brew 7 cups without needing a refill.",
+          "The substantial 56-ounce water reservoir enables up to seven consecutive single-serve brews without refilling, combining speed with convenience.",
       },
       {
-        title: "WAKE-UP READY COFFEE WITH EASY-TOUCH PROGRAMMING",
+        title: "PROGRAMMABLE CARAFE BREWING",
         description:
-          "For the 12 cup coffee maker side, wake up to a hot mug by setting the Easy-Touch programming the night before; the backlit display clearly shows the time & settings.",
+          "Set the timer the evening before using simple touch controls, and wake up to freshly brewed coffee. The illuminated display clearly shows time and brewing settings.",
       },
       {
-        title: "5 SINGLE-SERVE SIZES TO CHOOSE FROM",
+        title: "ADJUSTABLE SINGLE-SERVE VOLUMES",
         description:
-          "Customize brewing size to your cup using the Hamilton Beach Flex Brew coffee machine; select 6, 8, 10, 12 or 14 oz. with ground coffee or 6, 8 or 10 oz. via a pod — you'll get perfect amount in your cup.",
+          "Select from five serving sizes—6, 8, 10, 12, or 14 ounces with ground coffee, or 6, 8, or 10 ounces with pods—ensuring the perfect amount for any cup.",
       },
       {
-        title: "CONVENIENT CUP REST",
+        title: "ADAPTABLE CUP PLATFORM",
         description:
-          "The cup rest securely holds a standard-size cup of coffee and is removable to let you brew into a 7 tall travel mug. The storage area inside the cup rest holds your choice of the single-serve pod holder or brew basket.",
+          "The removable cup rest securely holds standard mugs and accommodates travel mugs up to 7 inches tall. Internal storage compartment keeps pod holder or brew basket organized.",
       },
       {
-        title: "VERSATILE BREWING OPTIONS",
+        title: "CUSTOMIZABLE BREW STRENGTH",
         description:
-          "This drip coffee maker lets you control strength with Select-a Brew's regular and bold settings. The Auto Pause & Pour feature lets you serve yourself a cup while brewing.",
+          "Control flavor intensity with regular and bold settings. The Auto Pause & Pour feature allows mid-brew serving without waiting for the full pot to complete.",
       },
     ],
     productInfo: {
-      Brand: "Hamilton Beach",
-      Color: "Black",
-      "Product Dimensions": '13.8"D x 15.6"W x 14"H',
-      "Special Feature": "Programmable, Removable Tank, Timer",
-      "Coffee Maker Type": "Drip Coffee Machine",
-      Style: "Modern",
-      "Specific Uses For Product": "Coffee",
-      "Included Components": "Coffee Maker, Glass Carafe, Single Serve Basket",
-      "Operation Mode": "Automatic",
-      Voltage: "120",
-      "Model Name": "FlexBrew Trio",
-      "Number of Items": "1",
-      "Water Reservoir": "56 oz",
       Manufacturer: "Hamilton Beach",
-      "Item Weight": "6.5 pounds",
+      Finish: "Black",
+      Dimensions: '13.8" Deep x 15.6" Wide x 14" High',
+      "Key Features": "Timer Function, Detachable Tank, Programmable",
+      "Brewing System": "Drip Style Coffee Maker",
+      Design: "Contemporary",
+      "Primary Use": "Coffee Preparation",
+      "Package Contents": "Coffee Maker Unit, Glass Carafe, Single Serve Basket",
+      "Control Type": "Automatic Operation",
+      "Power Rating": "120 Volts",
+      "Product Series": "FlexBrew Trio",
+      Brand: "Hamilton Beach",
+      "Net Weight": "6.5 pounds",
     },
     content: `Product Description
 The Hamilton Beach® FlexBrew® Trio Coffee Maker offers the ultimate versatility with three 
@@ -309,39 +255,40 @@ lover to enjoy their perfect brew, whether it's a quick morning cup or a full po
     rating: 4.7,
     images: [
       "https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71bUya9rrTL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61-cPVDjTnL._AC_SX679_.jpg",
     ],
-    amazonUrl: "https://amzn.to/43LSvDs",
+    amazonUrl: "https://amzn.to/3JGa1SO",
     aboutThisItem: [
       {
-        title: "CUSTOM FLAVOR STRENGTH",
+        title: "ADJUSTABLE FLAVOR INTENSITY",
         description:
-          "Enjoy two flavor options with strength selection: regular or extra-strong brew for both iced and hot coffee.",
+          "Choose between two strength levels—standard or extra-bold—for both hot and iced coffee preparations, tailoring each cup to your taste preferences.",
       },
       {
-        title: "FIVE ADJUSTABLE BREW SIZES​​",
+        title: "FIVE SERVING SIZE OPTIONS",
         description:
-          "Select 6, 8, 10, 12, or 14 oz servings; precise control for single servings, large mugs, or sharing needs.",
+          "Precisely control portion sizes with selections ranging from 6 to 14 ounces, accommodating everything from small cups to large mugs or shared servings.",
       },
       {
-        title: "50 OZ REMOVABLE RESERVOIR",
+        title: "LARGE DETACHABLE RESERVOIR",
         description:
-          "Large water tank enables brewing multiple cups at once, eliminating the need for frequent refills.",
+          "The 50-ounce removable water tank supports multiple brewing cycles without constant refilling, streamlining your coffee-making routine.",
       },
-      { title: "FAST & FRESH-BREWED", description: "Delicious iced coffee and hot coffee made in minutes." },
       {
-        title: "AUTO-CLEAN FUNCTION",
+        title: "RAPID BREWING TECHNOLOGY",
+        description: "Produces both hot and iced coffee beverages quickly, delivering fresh-brewed flavor in minutes.",
+      },
+      {
+        title: "SELF-CLEANING CYCLE",
         description:
-          "Hold Size and Bold buttons to activate a automatic cleaning cycle; eliminates manual scrubbing and reduces mineral buildup for consistent taste.",
+          "Activate the automatic cleaning function by pressing Size and Bold buttons simultaneously. This feature reduces mineral deposits and maintains optimal flavor without manual scrubbing.",
       },
     ],
     productInfo: {
-      Brand: "KIDISLE",
-      Color: "Black",
-      "Product Dimensions": '10"D x 6.3"W x 11.3"H',
-      "Special Feature": "Auto Shut-Off, Permanent Filter",
-      "Coffee Maker Type": "Drip Coffee Machine",
+      Manufacturer: "KIDISLE",
+      Finish: "Black",
+      Dimensions: '10" Deep x 6.3" Wide x 11.3" High',
+      "Key Features": "Auto Shut-Off, Permanent Filter",
+      "Brewing System": "Drip Style Coffee Maker",
     },
     content: `Product Description
 Brew the perfect cup every time with this Hot & Iced Single Serve Coffee Maker. 
@@ -360,30 +307,50 @@ refreshing iced coffee in the afternoon, it delivers great flavor fast—every t
     category: "Machine",
     rating: 4.4,
     images: [
-      "https://m.media-amazon.com/images/I/71KZfudGi1L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61wHwN6fEQL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71+XKIzr7GL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/617U+hSCJEL._AC_SL1500_.jpg",
     ],
-    amazonUrl: "https://amzn.to/4oKpRe6",
+    amazonUrl: "https://amzn.to/4qEldjC",
     aboutThisItem: [
-      { title: "CLASSIC ITALIAN DESIGN", description: "Iconic octagonal shape unchanged since 1933." },
-      { title: "STOVETOP BREWING", description: "Works on gas, electric, and induction (with adapter) stovetops." },
-      { title: "RICH ESPRESSO-STYLE COFFEE", description: "Produces strong, concentrated coffee similar to espresso." },
-      { title: "DURABLE ALUMINUM", description: "Lightweight yet sturdy construction for years of use." },
-      { title: "EASY TO USE", description: "Simple three-chamber design with no electricity required." },
-      { title: "MULTIPLE SIZES", description: "Available in 1, 3, 6, 9, and 12 cup capacities." },
-      { title: "AFFORDABLE", description: "Premium coffee brewing at an accessible price point." },
+      {
+        title: "TIMELESS ITALIAN STYLING",
+        description:
+          "Features the iconic eight-sided design that has remained unchanged since its introduction in 1933.",
+      },
+      {
+        title: "VERSATILE STOVETOP COMPATIBILITY",
+        description: "Functions on gas, electric, and induction cooktops (induction requires adapter plate).",
+      },
+      {
+        title: "CONCENTRATED COFFEE EXTRACTION",
+        description: "Creates robust, espresso-style coffee with intense flavor and full body.",
+      },
+      {
+        title: "LIGHTWEIGHT ALUMINUM BUILD",
+        description: "Combines durability with portability for reliable, long-lasting performance.",
+      },
+      {
+        title: "STRAIGHTFORWARD OPERATION",
+        description: "Three-chamber design requires no electrical power and offers simple, intuitive brewing.",
+      },
+      {
+        title: "VARIOUS CAPACITY OPTIONS",
+        description: "Available in 1, 3, 6, 9, and 12 cup sizes to suit different household needs.",
+      },
+      {
+        title: "BUDGET-FRIENDLY QUALITY",
+        description: "Delivers premium coffee brewing experience at an accessible price point.",
+      },
     ],
     productInfo: {
-      Brand: "CASABREWS",
-      Color: "A-Silver",
-      "Product Dimensions": '12.28"D x 5.47"W x 11.97"H',
-      "Special Feature":
-        "Cappuccino Machine, Cappuccino Maker, Espresso Machine With Milk Frother Steam Wand, Expresso Maker for Home or Office, Latte Machine, Latte Maker, Brushed Stainless Steel Coffee Machine, You can watch more INSTRUCTIONAL VIDEO by clicking Visit the CASABREWS Store, Espresso Maker, Espresso Machine with Milk Frother",
-      "Coffee Maker Type": "Espresso Machine",
-      Style: "Button",
       Manufacturer: "CASABREWS",
-      "Item Weight": "8.59 pounds",
+      Finish: "A-Silver",
+      Dimensions: '12.28" Deep x 5.47" Wide x 11.97" High',
+      "Key Features":
+        "Cappuccino Preparation, Milk Frothing Steam Wand, Brushed Stainless Steel Construction, Suitable for Home or Office Use, Instructional Videos Available at CASABREWS Store",
+      "Brewing System": "Espresso Machine",
+      Design: "Button Control",
+      Brand: "CASABREWS",
+      "Net Weight": "8.59 pounds",
     },
     content: `
 Bring café-quality espresso drinks to your home with the CASABREWS Espresso Machine 
@@ -413,44 +380,40 @@ For more details, visit the CASABREWS Store for instructional videos.`,
     title: "Bloom Nutrition Milk Frother",
     category: "Machine",
     rating: 4.6,
-    images: [
-      "https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/615aMdgvs9L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/6162NaV67rL._AC_SX679_.jpg",
-    ],
-    amazonUrl: "https://amzn.to/4oPKWnz",
+    images: ["https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg"],
+    amazonUrl: "https://amzn.to/438oFcc",
     aboutThisItem: [
       {
-        title: "HIGH QUALITY FROTHER WAND",
+        title: "POWERFUL HANDHELD FROTHER",
         description:
-          "Our High Powered Hand Frother instantly blends your favorite Bloom supplements to perfection (no clumps here!). Use for your Bloom greens, collagens, proteins, and more to help fuel your body with the nutrients it needs!.",
+          "Our high-performance electric whisk instantly blends Bloom supplements to smooth perfection without clumps. Perfect for greens, collagens, proteins, and other nutritional powders that support your wellness goals.",
       },
       {
-        title: "VERSATILE ELECTRIC MIXER",
+        title: "MULTI-PURPOSE BLENDING TOOL",
         description:
-          "Bloom Nutrition's Greens Mixer can blend through many different liquids ensuring a creamy, foamy consistency, every time. Use it as a greens blender, coffee frother, matcha whisk, or to even whip up eggs, or blend salad dressings for delicious, healthy recipes.",
+          "This versatile electric mixer works with various liquids to create smooth, frothy textures. Use it for supplement mixing, coffee frothing, matcha whisking, egg beating, or salad dressing preparation.",
       },
       {
-        title: "EASY TO USE",
+        title: "SIMPLE ONE-BUTTON DESIGN",
         description:
-          "This electric whisk instantly blends your juice or smoothie with one simple on and off switch. It also includes a sturdy, smooth plastic handle for comfortability and a sleek whisk stand for easy storage and accessibility.",
+          "Single on/off switch provides instant blending power. Includes ergonomic plastic handle for comfortable grip and elegant stand for organized storage and easy access.",
       },
       {
-        title: "CONVENIENT AND EFFORTLESS",
+        title: "PORTABLE AND MAINTENANCE-FREE",
         description:
-          "This handheld mixer is powered by 2 AA batteries, allowing for easy portability with no charging cords or outlets getting in the way of your morning routine. Plus, it's designed with rust-proof stainless steel that lasts and offers no hassle cleaning! Simply run under hot water, turn on, and it’s instantly clean.",
+          "Battery-powered operation (2 AA batteries) eliminates cords and outlets, offering complete portability. Rust-resistant stainless steel construction ensures durability. Clean effortlessly by running under hot water while activated.",
       },
       {
-        title: "FEMALE-FOUNDED",
+        title: "WOMAN-OWNED BRAND",
         description:
-          "Like many other women, co-founder Mari Llewellyn struggled to find dietary supplements that were made with quality ingredients and tasted delicious. That’s why she created Bloom — approachable and delicious health supplements designed to support your wellness journey and give your body what it needs to bloom.",
+          "Co-founder Mari Llewellyn created Bloom after struggling to find supplements with quality ingredients and great taste. Bloom offers approachable, delicious health products designed to support your wellness journey.",
       },
     ],
     productInfo: {
-      Brand: "Bloom Nutrition",
-      Color: "Mixer",
-      "Product Dimensions": '3"W x 10"H',
-      "Special Feature": "Battery Powered",
+      Manufacturer: "Bloom Nutrition",
+      Finish: "Mixer",
+      Dimensions: '3" Wide x 10" High',
+      "Key Features": "Battery Powered",
 
       Style: "Electric",
 
@@ -477,56 +440,59 @@ Complete Set: Comes with a sleek stand for easy storage.
 
 Elegant Look: Modern green finish with Bloom branding—perfect for any kitchen.
 
-Why You’ll Love It:
-Whether you’re blending matcha, whipping protein drinks, or enhancing your morning latte, this frother combines performance and style. With over 3,000 positive ratings and Amazon’s Choice badge, it’s a proven favorite among home baristas.`,
+Why You'll Love It:
+Whether you're blending matcha, whipping protein drinks, or enhancing your morning latte, this frother combines performance and style. With over 3,000 positive ratings and Amazon's Choice badge, it's a proven favorite among home baristas.`,
   },
   "keurig-k-duo-hot-iced-single-serve": {
     title: "Keurig K-Duo Hot & Iced Single Serve & Carafe Coffee Maker",
     category: "Machine",
     rating: 4.2,
-    images: [
-      "https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/714P2D+-gkL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71DZ8xXrxrL._AC_SX679_.jpg",
-    ],
-    amazonUrl: "https://amzn.to/4ooqTgg",
+    images: ["https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg"],
+    amazonUrl: "https://amzn.to/4hBnWX3",
     aboutThisItem: [
       {
-        title: "BREW OVER ICE",
-        description: "Adjusts temperature for maximum flavor and less ice melt for single-cup iced coffees and teas.",
-      },
-      {
-        title: "STRONG BREW & EXTRA HOT FUNCTIONALITY",
-        description: "Brews a stronger, more intense-flavored cup and the extra hot feature brews a hotter single cup.",
-      },
-      {
-        title: "MULTIPLE BREW SIZES",
+        title: "ICED BEVERAGE MODE",
         description:
-          "Brew 6, 8, 10, or 12oz single cups or 6, 8, 10, or 12-cup carafes. 12-cup glass carafe specially designed to limit dripping.",
+          "Optimizes brewing temperature specifically for iced drinks, maximizing flavor extraction while minimizing ice dilution for single-cup iced coffees and teas.",
       },
       {
-        title: "ONE 72OZ RESERVOIR",
+        title: "ENHANCED STRENGTH & TEMPERATURE",
         description:
-          "The extra-large, removable reservoir is shared by both sides for fast, convenient brewing with fewer refills.",
+          "Brew more concentrated, intensely flavored cups with the strong setting, or select extra hot mode for hotter single-serve beverages.",
       },
       {
-        title: "FRONT-FACING CONTROL PANEL",
-        description: "Intuitive interface for selecting all your brewing preferences.",
+        title: "VERSATILE SERVING SIZES",
+        description:
+          "Prepare single cups in 6, 8, 10, or 12-ounce sizes, or brew full carafes in 6, 8, 10, or 12-cup capacities. Specially designed glass carafe minimizes dripping.",
       },
       {
-        title: "PROGRAMMABLE CARAFE AUTO BREW",
-        description: "Set a time for your coffee maker to automatically brew a carafe up to 24 hours in advance.",
+        title: "SHARED 72-OUNCE RESERVOIR",
+        description:
+          "Extra-large removable water tank serves both brewing sides, enabling quick, convenient preparation with minimal refilling required.",
       },
-      { title: "COMPACT DESIGN", description: "The versatility of two kinds of brewers in one space-saving unit." },
+      {
+        title: "FRONT-MOUNTED CONTROLS",
+        description:
+          "User-friendly interface positioned at the front for easy access to all brewing preferences and settings.",
+      },
+      {
+        title: "SCHEDULED CARAFE BREWING",
+        description:
+          "Program the coffee maker to automatically prepare a full carafe up to 24 hours in advance for wake-up-ready coffee.",
+      },
+      {
+        title: "SPACE-EFFICIENT DESIGN",
+        description: "Combines dual brewing capabilities in a single compact unit that saves valuable counter space.",
+      },
     ],
     productInfo: {
-      Brand: "Keurig",
-      Color: "Black",
-      "Product Dimensions": '12.9"D x 11.1"W x 12.7"H',
-      "Special Feature": "Removable Tank",
-      "Coffee Maker Type": "Espresso Machine",
-      Style: "K-Duo Gen-2",
-      "Specific Uses For Product": "Iced Coffee,Hot Coffee",
+      Manufacturer: "Keurig",
+      Finish: "Black",
+      Dimensions: '12.9" Deep x 11.1" Wide x 12.7" High',
+      "Key Features": "Removable Tank",
+      "Brewing System": "Espresso Machine",
+      Design: "K-Duo Gen-2",
+      "Primary Use": "Iced Coffee,Hot Coffee",
       "Included Components": "Carafe",
       "Operation Mode": "Fully Automatic",
       Voltage: "110",
@@ -544,60 +510,56 @@ On the single-serve side, you can choose from 6, 8, 10, or 12oz cup sizes. The K
 
 The carafe side offers brewing capacities of 6, 8, 10, or 12 cups, and its Auto Brew function lets you schedule your coffee up to 24 hours in advance. The redesigned glass carafe prevents drips and sits on a heated plate to keep your coffee hot and flavorful for hours.
 
-Whether it’s a quiet morning for one or a lively gathering with friends, the Keurig K-Duo delivers premium coffee experiences — consistently, conveniently, and your way.`,
+Whether it's a quiet morning for one or a lively gathering with friends, the Keurig K-Duo delivers premium coffee experiences — consistently, conveniently, and your way.`,
   },
   "ninja-luxe-cafe-3-in-1-espresso": {
     title: "Ninja Luxe Café 3-in-1 Espresso, Drip Coffee and Cold Brew Machine",
     category: "Machine",
     rating: 4.5,
-    images: [
-      "https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/81Ixy09NgzL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/811Q-ojaVZL._AC_SX679_.jpg",
-    ],
-    amazonUrl: "https://amzn.to/4oM3gOl",
+    images: ["https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg"],
+    amazonUrl: "https://amzn.to/4hDSNSM",
     aboutThisItem: [
       {
-        title: "3 MACHINES IN 1",
+        title: "TRIPLE BREWING SYSTEM",
         description:
-          "Brew without limits with no guesswork espresso, well-balanced drip coffee, and rapid cold brew. 2 Espresso Styles — double shot or quad shot, 3 Drip Coffee Styles—classic, rich or over ice, and 2 Cold Brew styles— cold pressed espresso or cold brew coffee (drip coffee and cold brew available in 6, 8, 10, 12, 14, 16, 18 oz. sizes).",
+          "Seamlessly prepare precision espresso, balanced drip coffee, and quick cold brew without guesswork. Offers 2 espresso styles (double or quad shot), 3 drip styles (classic, rich, or over ice), and 2 cold brew options (cold-pressed espresso or cold brew coffee) in sizes from 6 to 18 ounces.",
       },
       {
-        title: "BARISTA ASSIST TECHNOLOGY",
+        title: "INTELLIGENT BREWING GUIDANCE",
         description:
-          "Unlock the ultimate guided experience with customized grind size recommendations, weight-based dosing, and active brew adjustments for temperature & pressure for balanced flavor, deliver café-quality brews, no guesswork required.",
+          "Advanced Barista Assist Technology provides personalized grind recommendations, weight-based dosing, and real-time brewing adjustments for temperature and pressure, ensuring perfectly balanced, café-quality results without trial and error.",
       },
       {
-        title: "INTEGRATED GRINDER",
+        title: "BUILT-IN BURR GRINDER",
         description:
-          "The conical burr grinder has 25 grind settings to deliver a fresh, precise grind for versatile drink options for every type of bean.",
+          "Conical burr grinder features 25 precision settings, delivering consistently fresh, accurately ground coffee optimized for any bean variety and brewing method.",
       },
       {
-        title: "WEIGHT-BASED DOSING",
+        title: "PRECISION SCALE DOSING",
         description:
-          "Different drinks require different amounts of grounds. Our built-in scale does the work for you with weight-based dosing tailored for your chosen drink. Other machines simply grind for a set amount of time, and you need to manually weigh your grounds.",
+          "Integrated scale automatically measures the exact amount of grounds needed for each drink type. Unlike time-based grinders, this weight-based system eliminates manual weighing and ensures consistent results.",
       },
       {
-        title: "HANDS-FREE FROTHING",
+        title: "AUTOMATED MILK FROTHING",
         description:
-          "Whether using dairy or plant-based milk, creating hot or cold microfoam, the Dual Froth System combines steaming and whisking at the same time to effortlessly create perfectly textured microfoam. Removing the trial-and-error from manual frothing with 4 preset programs including steamed milk, thin froth, thick froth and cold foam.",
+          "Dual Froth System simultaneously steams and whisks dairy or plant-based milk to create perfect microfoam texture. Four preset programs (steamed milk, thin froth, thick froth, cold foam) eliminate manual frothing guesswork.",
       },
       {
-        title: "FLAVORFUL COLD-PRESSED DRINKS",
+        title: "COLD-PRESSED EXTRACTION",
         description:
-          "Espresso brewed at lower temperature and pressure, at a slower pace to extract a more flavorful, smooth brew. Perfect for creating a crowd-pleasing espresso martini.",
+          "Espresso brewed at reduced temperature and pressure extracts smoother, more flavorful coffee at a slower pace—ideal for creating sophisticated cold beverages like espresso martinis.",
       },
       {
-        title: "PERFECT PUCKS",
+        title: "OPTIMAL PUCK FORMATION",
         description:
-          "Assisted tamper delivers the perfect puck with evenly distributed and compact grounds, ensuring ideal conditions for even water distribution that results in a bold, high-quality shot.",
+          "Assisted tamper creates uniformly distributed, properly compacted coffee pucks, ensuring even water distribution for bold, high-quality espresso shots every time.",
       },
     ],
     productInfo: {
-      Brand: "Ninja",
-      Color: "Stainless Steel",
-      "Product Dimensions": '12.99"D x 13.39"W x 14.57"H',
-      "Special Feature": "Auto Shut-Off, Dishwasher Safe Parts, Milk Frother, Programmable, Timer",
+      Manufacturer: "Ninja",
+      Finish: "Stainless Steel",
+      Dimensions: '12.99" Deep x 13.39" Wide x 14.57" High',
+      "Key Features": "Auto Shut-Off, Dishwasher Safe Parts, Milk Frother, Programmable, Timer",
       "Coffee Maker Type": "Espresso Machine",
       Style: "Luxe Cafe",
       "Specific Uses For Product": "Cappuccino, Espresso, Iced Coffee, Latte, Mocha",
@@ -646,7 +608,13 @@ export default function ReviewDetailPage({ params }: { params: { slug: string } 
         </Link>
 
         <article className="bg-card border border-border rounded-lg overflow-hidden">
-          <ImageSlider images={review.images || [review.image]} alt={review.title} />
+          <div className="relative bg-white">
+            <img
+              src={review.images?.[0] || review.image || "/placeholder.svg"}
+              alt={review.title}
+              className="w-full h-96 object-contain"
+            />
+          </div>
 
           <div className="p-8">
             <div className="flex items-center justify-between mb-4">
@@ -669,12 +637,21 @@ export default function ReviewDetailPage({ params }: { params: { slug: string } 
               <span className="ml-2 text-lg font-semibold text-foreground">{review.rating}/5</span>
             </div>
 
+            {/* Affiliate Disclosure */}
+            <div className="mb-4 p-4 bg-amber-900/20 border border-amber-800 rounded-lg">
+              <p className="text-sm text-amber-200">
+                <strong>Affiliate Disclosure:</strong> As an Associate, we earn from qualifying purchases made through
+                links on this page. This helps support our site at no extra cost to you.
+              </p>
+            </div>
+
             <a
               href={review.amazonUrl}
-              data-auto
+              target="_blank"
+              rel="noopener noreferrer nofollow sponsored"
               className="inline-block bg-[#ff9500] hover:bg-[#e68600] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300 mb-8"
             >
-              View on Amazon
+              Check Price on Retailer
             </a>
 
             {review.aboutThisItem && review.aboutThisItem.length > 0 && (

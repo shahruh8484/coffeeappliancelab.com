@@ -1,12 +1,9 @@
 "use client"
 
-import type React from "react"
-
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
+import { Star } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
 
 const reviews = [
   {
@@ -15,11 +12,7 @@ const reviews = [
     category: "Machine",
     rating: 4.5,
     description: "Enjoy a richer, more intense coffee flavor with the strong brew option.",
-    images: [
-      "https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71A3hJvFj7L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61rBGd54G-L._AC_SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SL1500_.jpg"],
     slug: "keurig-k",
   },
   {
@@ -28,11 +21,7 @@ const reviews = [
     category: "Machine",
     rating: 4.8,
     description: "Begin your mornings with the perfect cup.",
-    images: [
-      "https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg",
-      "https://m.media-amazon.com/images/I/71PQZj8LwWL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61UN248J2zL._AC_SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg"],
     slug: "black-decker",
   },
   {
@@ -41,11 +30,7 @@ const reviews = [
     category: "Coffee",
     rating: 4.3,
     description: "Lavazza's most popular blend.",
-    images: [
-      "https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71+n-Ma5o-L._SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71TWRy-qNCL._SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg"],
     slug: "lavazza-super-crema",
   },
   {
@@ -54,10 +39,7 @@ const reviews = [
     category: "Machine",
     rating: 4.9,
     description: "Perfect for both home kitchens and office coffee stations.",
-    images: [
-      "https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/71eaWBtLvkL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/71ZRWGKRFbL._SX522_.jpg",
+    images: [      "https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg",
     ],
     slug: "hamilton-beach-flexbre",
   },
@@ -69,8 +51,6 @@ const reviews = [
     description: "Brew the perfect cup every time with this Hot & Iced Single Serve Coffee Maker.",
     images: [
       "https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71bUya9rrTL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61-cPVDjTnL._AC_SX679_.jpg",
     ],
     slug: "hot-iced-coffee-maker",
   },
@@ -81,9 +61,7 @@ const reviews = [
     rating: 4.4,
     description: "Bring café-quality espresso drinks to your home with the CASABREWS Espresso Machine.",
     images: [
-      "https://m.media-amazon.com/images/I/71KZfudGi1L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61wHwN6fEQL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71+XKIzr7GL._AC_SX679_.jpg",
+      "https://m.media-amazon.com/images/I/617U+hSCJEL._AC_SL1500_.jpg",
     ],
     slug: "casabrews-cm5418-espresso",
   },
@@ -93,11 +71,7 @@ const reviews = [
     category: "Machine",
     rating: 4.6,
     description: "Experience café-style drinks at home with the Bloom Nutrition Electric Milk Frother.",
-    images: [
-      "https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/615aMdgvs9L._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/6162NaV67rL._AC_SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg"],
     slug: "bloom-nutrition-milk-frother",
   },
   {
@@ -106,11 +80,7 @@ const reviews = [
     category: "Machine",
     rating: 4.2,
     description: "Versatile brewer designed for every coffee moment.",
-    images: [
-      "https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/714P2D+-gkL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/71DZ8xXrxrL._AC_SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg"],
     slug: "keurig-k-duo-hot-iced-single-serve",
   },
   {
@@ -119,85 +89,10 @@ const reviews = [
     category: "Machine",
     rating: 4.5,
     description: "Experience espresso made simple with the Ninja Luxe Café Premier Series.",
-    images: [
-      "https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/81Ixy09NgzL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/811Q-ojaVZL._AC_SX679_.jpg",
-    ],
+    images: ["https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg"],
     slug: "ninja-luxe-cafe-3-in-1-espresso",
   },
 ]
-
-function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isHovered, setIsHovered] = useState(false)
-
-  const goToPrevious = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
-  }
-
-  const goToNext = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
-  }
-
-  const goToSlide = (index: number, e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setCurrentIndex(index)
-  }
-
-  return (
-    <div
-      className="relative w-full h-48 bg-white group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <img src={images[currentIndex] || "/placeholder.svg"} alt={alt} className="w-full h-full object-contain" />
-
-      {images.length > 1 && (
-        <>
-          {/* Navigation Arrows */}
-          <button
-            onClick={goToPrevious}
-            className={`absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={goToNext}
-            className={`absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
-            aria-label="Next image"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          {/* Dot Indicators */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={(e) => goToSlide(index, e)}
-                className={`transition-all duration-200 rounded-full hover:scale-110 ${
-                  index === currentIndex ? "bg-[#ff9500] w-8 h-3" : "bg-amber-200/70 hover:bg-amber-300 w-3 h-3"
-                }`}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  )
-}
 
 export default function ReviewsPage() {
   return (
@@ -233,7 +128,13 @@ export default function ReviewsPage() {
           {reviews.map((review) => (
             <Link key={review.id} href={`/reviews/${review.slug}`}>
               <div className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <ImageSlider images={review.images} alt={review.title} />
+                <div className="relative w-full h-48 bg-white">
+                  <img
+                    src={review.images[0] || "/placeholder.svg"}
+                    alt={review.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
 
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-2">
