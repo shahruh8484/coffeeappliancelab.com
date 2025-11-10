@@ -12,6 +12,7 @@ const featuredReviews = [
     rating: 4.8,
     images: ["/keurig-k-express-front.jpg", "/keurig-k-express-side.jpg", "/keurig-k-express-brewing.jpg"],
     excerpt: "Enjoy a richer, more intense coffee flavor with the strong brew option.",
+    amazonUrl: "https://amzn.to/49M1bh1", // Added Amazon URL
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const featuredReviews = [
     rating: 4.8,
     images: ["/black-decker-12cup-front.jpg", "/black-decker-12cup-carafe.jpg", "/black-decker-12cup-controls.jpg"],
     excerpt: "Begin your mornings with the perfect cup.",
+    amazonUrl: "https://amzn.to/3WNMx17", // Added Amazon URL
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const featuredReviews = [
     rating: 4.5,
     images: ["/lavazza-super-crema-bag.jpg", "/lavazza-super-crema-beans.jpg", "/lavazza-super-crema-espresso.jpg"],
     excerpt: "Lavazza's most popular blend.",
+    amazonUrl: "https://amzn.to/4oBbidh", // Added Amazon URL
   },
   {
     id: 4,
@@ -43,6 +46,7 @@ const featuredReviews = [
       "/hamilton-beach-flexbrew-carafe.jpg",
     ],
     excerpt: "Perfect for both home kitchens and office coffee stations.",
+    amazonUrl: "https://amzn.to/4qPJ4g7", // Added Amazon URL
   },
   {
     id: 5,
@@ -56,6 +60,7 @@ const featuredReviews = [
       "/hot-iced-coffee-maker-iced.jpg",
     ],
     excerpt: "Brew the perfect cup every time with this Hot & Iced Single Serve Coffee Maker.",
+    amazonUrl: "https://amzn.to/4i21PZV", // Added Amazon URL
   },
   {
     id: 6,
@@ -69,6 +74,7 @@ const featuredReviews = [
       "/casabrews-espresso-steaming.jpg",
     ],
     excerpt: "Café-quality espresso drinks to your home with the CASABREWS.",
+    amazonUrl: "https://amzn.to/4os6S8p", // Added Amazon URL
   },
   {
     id: 7,
@@ -78,6 +84,7 @@ const featuredReviews = [
     rating: 4.6,
     images: ["/bloom-frother-front.jpg", "/bloom-frother-frothing.jpg", "/bloom-frother-stand.jpg"],
     excerpt: "Experience café-style drinks at home with the Bloom Nutrition Electric Milk Frother.",
+    amazonUrl: "https://amzn.to/4nNDGHQ", // Added Amazon URL
   },
   {
     id: 8,
@@ -87,6 +94,7 @@ const featuredReviews = [
     rating: 4.2,
     images: ["/keurig-k-duo-front.jpg", "/keurig-k-duo-carafe.jpg", "/keurig-k-duo-single-serve.jpg"],
     excerpt: "Versatile brewer designed for every coffee moment.",
+    amazonUrl: "https://amzn.to/3LCE5iN", // Added Amazon URL
   },
   {
     id: 9,
@@ -96,6 +104,7 @@ const featuredReviews = [
     rating: 4.5,
     images: ["/ninja-luxe-cafe-front.jpg", "/ninja-luxe-cafe-espresso.jpg", "/ninja-luxe-cafe-frother.jpg"],
     excerpt: "Experience espresso made simple with the Ninja Luxe Café Premier Series.",
+    amazonUrl: "https://amzn.to/3LCoD6i", // Added Amazon URL
   },
 ]
 
@@ -106,38 +115,50 @@ export function FeaturedReviews() {
         <h2 className="text-4xl font-bold text-amber-50 mb-12 text-center font-serif">Featured Reviews</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {featuredReviews.map((review) => (
-            <Link
+            <div
               key={review.id}
-              href={`/reviews/${review.slug}`}
-              className="bg-amber-950 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-amber-800 block"
+              className="bg-amber-950 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-amber-800"
             >
-              <div className="relative w-full h-48 bg-white">
-                <img
-                  src={review.images[0] || "/placeholder.svg"}
-                  alt={review.title}
-                  className="w-full h-48 object-contain"
-                />
-              </div>
+              <Link href={`/reviews/${review.slug}`} className="block">
+                <div className="relative w-full h-48 bg-white">
+                  <img
+                    src={review.images[0] || "/placeholder.svg"}
+                    alt={review.title}
+                    className="w-full h-48 object-contain"
+                  />
+                </div>
 
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold bg-orange-500 text-white px-3 py-1 rounded-full">
-                    {review.category}
-                  </span>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold bg-orange-500 text-white px-3 py-1 rounded-full">
+                      {review.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{review.title}</h3>
+                  <p className="text-amber-100 text-sm mb-4">{review.excerpt}</p>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${i < Math.floor(review.rating) ? "fill-orange-500 text-orange-500" : "text-amber-700"}`}
+                      />
+                    ))}
+                    <span className="text-sm text-amber-200 ml-2">{review.rating}</span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{review.title}</h3>
-                <p className="text-amber-100 text-sm mb-4">{review.excerpt}</p>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${i < Math.floor(review.rating) ? "fill-orange-500 text-orange-500" : "text-amber-700"}`}
-                    />
-                  ))}
-                  <span className="text-sm text-amber-200 ml-2">{review.rating}</span>
-                </div>
+              </Link>
+
+              <div className="px-6 pb-6">
+                <a
+                  href={review.amazonUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow sponsored"
+                  className="block w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg text-center"
+                >
+                  Check Price
+                </a>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 

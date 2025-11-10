@@ -11,7 +11,7 @@ const reviewsData: Record<string, any> = {
     category: "Machine",
     rating: 4.5,
     images: ["https://m.media-amazon.com/images/I/611S4FYZhsL._AC_SL1500_.jpg"],
-    amazonUrl: "https://amzn.to/4nxD8We",
+    amazonUrl: "https://amzn.to/49M1bh1",
     aboutThisItem: [
       {
         title: "BOLD FLAVOR OPTION",
@@ -75,7 +75,7 @@ const reviewsData: Record<string, any> = {
     category: "Machine",
     rating: 4.8,
     images: ["https://m.media-amazon.com/images/I/61Rdl5C2AHL._AC_SY879_.jpg"],
-    amazonUrl: "https://amzn.to/3X4Tqer",
+    amazonUrl: "https://amzn.to/3WNMx17",
     aboutThisItem: [
       {
         title: "DURABLE 12-CUP GLASS CARAFE",
@@ -128,7 +128,7 @@ const reviewsData: Record<string, any> = {
     category: "Coffee",
     rating: 4.3,
     images: ["https://m.media-amazon.com/images/I/61dSjp-nZvL._SX679_.jpg"],
-    amazonUrl: "https://amzn.to/4qIjRoa",
+    amazonUrl: "https://amzn.to/4oBbidh",
     aboutThisItem: [
       {
         title: "PREMIUM WHOLE BEAN BLEND",
@@ -185,7 +185,7 @@ from the first sip to the last.`,
     category: "Machine",
     rating: 4.9,
     images: ["https://m.media-amazon.com/images/I/716tyaBxAwL._SX522_.jpg"],
-    amazonUrl: "https://amzn.to/49wEvBf",
+    amazonUrl: "https://amzn.to/4qPJ4g7",
     aboutThisItem: [
       {
         title: "TRIPLE BREWING VERSATILITY",
@@ -252,7 +252,7 @@ lover to enjoy their perfect brew, whether it's a quick morning cup or a full po
     category: "Machine",
     rating: 4.7,
     images: ["https://m.media-amazon.com/images/I/8150coh3TDL._AC_SX679_.jpg"],
-    amazonUrl: "https://amzn.to/3JGa1SO",
+    amazonUrl: "https://amzn.to/4i21PZV",
     aboutThisItem: [
       {
         title: "ADJUSTABLE FLAVOR INTENSITY",
@@ -303,7 +303,7 @@ refreshing iced coffee in the afternoon, it delivers great flavor fast—every t
     category: "Machine",
     rating: 4.4,
     images: ["https://m.media-amazon.com/images/I/617U+hSCJEL._AC_SL1500_.jpg"],
-    amazonUrl: "https://amzn.to/4qEldjC",
+    amazonUrl: "https://amzn.to/4os6S8p",
     aboutThisItem: [
       {
         title: "TIMELESS ITALIAN STYLING",
@@ -375,7 +375,7 @@ For more details, visit the CASABREWS Store for instructional videos.`,
     category: "Machine",
     rating: 4.6,
     images: ["https://m.media-amazon.com/images/I/51vX3eeHR5L._AC_SX679_.jpg"],
-    amazonUrl: "https://amzn.to/438oFcc",
+    amazonUrl: "https://amzn.to/4nNDGHQ",
     aboutThisItem: [
       {
         title: "POWERFUL HANDHELD FROTHER",
@@ -442,7 +442,7 @@ Whether you're blending matcha, whipping protein drinks, or enhancing your morni
     category: "Machine",
     rating: 4.2,
     images: ["https://m.media-amazon.com/images/I/71lXNChJJPL._AC_SX679_.jpg"],
-    amazonUrl: "https://amzn.to/4hBnWX3",
+    amazonUrl: "https://amzn.to/3LCE5iN",
     aboutThisItem: [
       {
         title: "ICED BEVERAGE MODE",
@@ -511,7 +511,7 @@ Whether it's a quiet morning for one or a lively gathering with friends, the Keu
     category: "Machine",
     rating: 4.5,
     images: ["https://m.media-amazon.com/images/I/71hQjwGKVrL._AC_SX679_.jpg"],
-    amazonUrl: "https://amzn.to/4hDSNSM",
+    amazonUrl: "https://amzn.to/3LCoD6i",
     aboutThisItem: [
       {
         title: "TRIPLE BREWING SYSTEM",
